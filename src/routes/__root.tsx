@@ -76,9 +76,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Affordable, accessible and quality private healthcare for Irutare and surrounding communities in Rwanda." },
       { name: "author", content: "Irutare Medical Clinic Ltd" },
       { property: "og:title", content: "Irutare Medical Clinic Ltd" },
-      { property: "og:description", content: "Trusted private healthcare in Irutare, Rwanda." },
+      { property: "og:description", content: "Affordable, accessible and quality private healthcare for Irutare and surrounding communities in Rwanda." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Irutare Medical Clinic Ltd" },
+      { name: "twitter:description", content: "Affordable, accessible and quality private healthcare for Irutare and surrounding communities in Rwanda." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/06706386-85b8-4f82-88c4-b2d7c94d08d3" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/06706386-85b8-4f82-88c4-b2d7c94d08d3" },
     ],
     links: [
       {
