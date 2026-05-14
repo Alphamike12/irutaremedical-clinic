@@ -72,14 +72,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Irutare Medical Clinic Ltd" },
+      { name: "description", content: "Affordable, accessible and quality private healthcare for Irutare and surrounding communities in Rwanda." },
+      { name: "author", content: "Irutare Medical Clinic Ltd" },
+      { property: "og:title", content: "Irutare Medical Clinic Ltd" },
+      { property: "og:description", content: "Trusted private healthcare in Irutare, Rwanda." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
