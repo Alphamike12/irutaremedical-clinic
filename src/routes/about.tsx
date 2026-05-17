@@ -91,6 +91,38 @@ function AboutPage() {
           </p>
         </div>
       </section>
+
+      <section className="bg-secondary/40 py-20">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
+          <div className="relative">
+            <img
+              src={ownerImg}
+              alt="Dr. Simparimiheto Jean Chrysostome, founder and owner of Irutare Medical Clinic"
+              loading="lazy"
+              width={1080}
+              height={1440}
+              className="aspect-[3/4] w-full rounded-3xl object-cover shadow-[var(--shadow-card)]"
+            />
+          </div>
+          <div>
+            <p className="text-sm font-medium text-primary">Founder &amp; Owner</p>
+            <h2 className="mt-3 font-display text-4xl font-semibold sm:text-5xl">
+              Dr. Simparimiheto Jean Chrysostome
+            </h2>
+            <p className="mt-5 text-muted-foreground">
+              Dr. Simparimiheto Jean Chrysostome is the founder and owner of Irutare Medical
+              Clinic Ltd. With years of frontline clinical experience, he leads the vision of
+              bringing affordable, professional and compassionate healthcare closer to the
+              people of Irutare and surrounding communities.
+            </p>
+            <p className="mt-4 text-muted-foreground">
+              His commitment to patient-centered care and modern medical practice shapes every
+              aspect of the clinic — from staffing and quality standards to long-term plans for
+              expanding services across the region.
+            </p>
+          </div>
+        </div>
+      </section>
     </SiteLayout>
   );
 }
