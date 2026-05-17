@@ -73,7 +73,7 @@ function ServiceDetailPage() {
         <div className="lg:col-span-2 rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
           <h2 className="font-display text-2xl font-semibold">What's included</h2>
           <ul className="mt-5 space-y-3">
-            {service.highlights.map((h) => (
+            {service.highlights.map((h: string) => (
               <li key={h} className="flex items-start gap-3">
                 <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <Check className="h-3.5 w-3.5" />
