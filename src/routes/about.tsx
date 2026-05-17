@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
 import { Eye, Target, Heart, ShieldCheck, Sparkles, Users } from "lucide-react";
 import doctorImg from "@/assets/doctor-care.jpg";
+import ownerImg from "@/assets/owner-dr-simparimiheto.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
