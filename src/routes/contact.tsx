@@ -46,7 +46,11 @@ function ContactPage() {
               </span>
               <div>
                 <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{c.label}</p>
-                <p className="mt-1 font-medium">{c.value}</p>
+                {"href" in c && c.href ? (
+                  <a href={c.href} className="mt-1 block font-medium hover:text-primary">{c.value}</a>
+                ) : (
+                  <p className="mt-1 font-medium">{c.value}</p>
+                )}
               </div>
             </div>
           ))}
