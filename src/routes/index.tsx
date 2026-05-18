@@ -193,9 +193,9 @@ function HomePage() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <a href="tel:+250000000000" className="flex items-center gap-3 rounded-2xl bg-background/10 px-5 py-4 backdrop-blur-sm transition-colors hover:bg-background/20">
+              <a href="tel:+250785198123" className="flex items-center gap-3 rounded-2xl bg-background/10 px-5 py-4 backdrop-blur-sm transition-colors hover:bg-background/20">
                 <Phone className="h-5 w-5" />
-                <span><span className="block text-xs opacity-80">Call us</span><span className="font-medium">+250 000 000 000</span></span>
+                <span><span className="block text-xs opacity-80">Call us</span><span className="font-medium">+250 785 198 123</span></span>
               </a>
               <div className="flex items-center gap-3 rounded-2xl bg-background/10 px-5 py-4 backdrop-blur-sm">
                 <MapPin className="h-5 w-5" />
