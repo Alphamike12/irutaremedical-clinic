@@ -57,7 +57,19 @@ function ContactPage() {
         </div>
 
         <form
-          onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            const fd = new FormData(e.currentTarget);
+            const name = String(fd.get("name") || "");
+            const phone = String(fd.get("phone") || "");
+            const email = String(fd.get("email") || "");
+            const message = String(fd.get("message") || "");
+            const subject = `New message from ${name} — Irutare Medical Clinic`;
+            const body = `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}`;
+            const url = `mailto:simpachrys@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = url;
+            setSent(true);
+          }}
           className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow-card)] sm:p-10"
         >
           <h2 className="font-display text-3xl font-semibold">Send a message</h2>
@@ -67,7 +79,7 @@ function ContactPage() {
             <div className="mt-8 flex flex-col items-center gap-3 rounded-2xl bg-primary/10 p-8 text-center">
               <CheckCircle2 className="h-10 w-10 text-primary" />
               <p className="font-display text-xl font-semibold">Thank you!</p>
-              <p className="text-sm text-muted-foreground">Your message has been received. We'll be in touch soon.</p>
+              <p className="text-sm text-muted-foreground">Your email app has opened with your message addressed to us. Just hit send.</p>
             </div>
           ) : (
             <div className="mt-6 space-y-4">
@@ -79,6 +91,7 @@ function ContactPage() {
               <div>
                 <label className="mb-1.5 block text-sm font-medium">Message</label>
                 <textarea
+                  name="message"
                   required
                   rows={5}
                   className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
