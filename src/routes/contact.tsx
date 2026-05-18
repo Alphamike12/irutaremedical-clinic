@@ -35,7 +35,7 @@ function ContactPage() {
       <section className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_1.2fr]">
         <div className="space-y-5">
           {[
-            { icon: MapPin, label: "Location", value: "Irutare, Rwanda" },
+            { icon: MapPin, label: "Location", value: "Rutare Sector, Gicumbi District, Northern Province, Rwanda" },
             { icon: Phone, label: "Phone", value: "+250 785 198 123", href: "tel:+250785198123" },
             { icon: Mail, label: "Email", value: "simpachrys@gmail.com", href: "mailto:simpachrys@gmail.com" },
             { icon: Clock, label: "Hours", value: "Open daily — emergency response available" },
