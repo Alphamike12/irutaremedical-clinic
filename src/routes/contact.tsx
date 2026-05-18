@@ -36,8 +36,8 @@ function ContactPage() {
         <div className="space-y-5">
           {[
             { icon: MapPin, label: "Location", value: "Irutare, Rwanda" },
-            { icon: Phone, label: "Phone", value: "+250 000 000 000" },
-            { icon: Mail, label: "Email", value: "info@irutaremedical.rw" },
+            { icon: Phone, label: "Phone", value: "+250 785 198 123", href: "tel:+250785198123" },
+            { icon: Mail, label: "Email", value: "simpachrys@gmail.com", href: "mailto:simpachrys@gmail.com" },
             { icon: Clock, label: "Hours", value: "Open daily — emergency response available" },
           ].map((c) => (
             <div key={c.label} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
