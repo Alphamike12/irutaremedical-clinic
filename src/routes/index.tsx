@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
 import {
-  Stethoscope, Baby, HeartPulse, FlaskConical, Pill, UserRound,
   ShieldCheck, Clock, Sparkles, ArrowRight, MapPin, Phone,
 } from "lucide-react";
+import { services as clinicServices } from "@/data/services";
 import heroImg from "@/assets/clinic-hero.jpg";
 import doctorImg from "@/assets/doctor-care.jpg";
 import maternityImg from "@/assets/maternity.jpg";
@@ -20,14 +20,7 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const services = [
-  { icon: Stethoscope, title: "Outpatient (OPD)", desc: "General consultations and treatment of common illnesses." },
-  { icon: Baby, title: "Pediatrics", desc: "Child healthcare, nutrition monitoring and vaccinations." },
-  { icon: HeartPulse, title: "Gynecology & Maternity", desc: "Antenatal care, women's health and family planning." },
-  { icon: FlaskConical, title: "Laboratory", desc: "Blood tests, malaria, pregnancy tests and urinalysis." },
-  { icon: Pill, title: "Pharmacy", desc: "Prescription medicines and over-the-counter drugs." },
-  { icon: UserRound, title: "General Medicine", desc: "Comprehensive care for adults and the elderly." },
-];
+const phaseOneServices = clinicServices.filter((service) => service.phase === "one");
 
 function HomePage() {
   return (
@@ -96,17 +89,22 @@ function HomePage() {
           </Link>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => (
-            <div
-              key={s.title}
+          {phaseOneServices.map((s) => (
+            <Link
+              key={s.slug}
+              to="/services/$slug"
+              params={{ slug: s.slug }}
               className="group rounded-2xl border border-border bg-card p-7 shadow-[var(--shadow-card)] transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]"
             >
               <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                 <s.icon className="h-6 w-6" />
               </div>
               <h3 className="font-display text-xl font-semibold">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-            </div>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.short}</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
           ))}
         </div>
       </section>
@@ -199,7 +197,7 @@ function HomePage() {
               </a>
               <div className="flex items-center gap-3 rounded-2xl bg-background/10 px-5 py-4 backdrop-blur-sm">
                 <MapPin className="h-5 w-5" />
-                <span><span className="block text-xs opacity-80">Visit</span><span className="font-medium">Irutare, Rwanda</span></span>
+                <span><span className="block text-xs opacity-80">Visit</span><span className="font-medium">Rutare Sector, Gicumbi District, Northern Province, Rwanda</span></span>
               </div>
             </div>
           </div>
