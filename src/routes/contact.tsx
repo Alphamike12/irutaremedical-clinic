@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -16,8 +15,6 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const [sent, setSent] = useState(false);
-
   return (
     <SiteLayout>
       <section className="bg-[var(--gradient-soft)] px-4 py-20 sm:px-6">
@@ -57,54 +54,37 @@ function ContactPage() {
         </div>
 
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const fd = new FormData(e.currentTarget);
-            const name = String(fd.get("name") || "");
-            const phone = String(fd.get("phone") || "");
-            const email = String(fd.get("email") || "");
-            const message = String(fd.get("message") || "");
-            const subject = `New message from ${name} — Irutare Medical Clinic`;
-            const body = `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}`;
-            const url = `mailto:simpachrys@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.location.href = url;
-            setSent(true);
-          }}
+          action="mailto:simpachrys@gmail.com"
+          method="post"
+          encType="text/plain"
           className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow-card)] sm:p-10"
         >
           <h2 className="font-display text-3xl font-semibold">Send a message</h2>
           <p className="mt-2 text-sm text-muted-foreground">We typically respond within one business day.</p>
 
-          {sent ? (
-            <div className="mt-8 flex flex-col items-center gap-3 rounded-2xl bg-primary/10 p-8 text-center">
-              <CheckCircle2 className="h-10 w-10 text-primary" />
-              <p className="font-display text-xl font-semibold">Thank you!</p>
-              <p className="text-sm text-muted-foreground">Your email app has opened with your message addressed to us. Just hit send.</p>
+          <div className="mt-6 space-y-4">
+            <input type="hidden" name="Subject" value="New message — Irutare Medical Clinic" />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field label="Full name" name="Full name" required />
+              <Field label="Phone" name="Phone" type="tel" required />
             </div>
-          ) : (
-            <div className="mt-6 space-y-4">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Full name" name="name" required />
-                <Field label="Phone" name="phone" type="tel" required />
-              </div>
-              <Field label="Email" name="email" type="email" />
-              <div>
-                <label className="mb-1.5 block text-sm font-medium">Message</label>
-                <textarea
-                  name="message"
-                  required
-                  rows={5}
-                  className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
-                />
-              </div>
-              <button
-                type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-[var(--shadow-elegant)] transition-transform hover:scale-[1.01] sm:w-auto"
-              >
-                Send message <Send className="h-4 w-4" />
-              </button>
+            <Field label="Email" name="Email" type="email" />
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Message</label>
+              <textarea
+                name="Message"
+                required
+                rows={5}
+                className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+              />
             </div>
-          )}
+            <button
+              type="submit"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-[var(--shadow-elegant)] transition-transform hover:scale-[1.01] sm:w-auto"
+            >
+              Send message <Send className="h-4 w-4" />
+            </button>
+          </div>
         </form>
       </section>
     </SiteLayout>
