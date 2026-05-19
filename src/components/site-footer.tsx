@@ -28,7 +28,7 @@ export function SiteFooter() {
         <div>
           <h4 className="mb-3 text-sm font-semibold text-foreground">Contact</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />Irutare, Rwanda</li>
+            <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />Rutare Sector, Gicumbi District, Northern Province, Rwanda</li>
             <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" /><a href="tel:+250785198123" className="hover:text-foreground">+250 785 198 123</a></li>
             <li className="flex items-start gap-2"><Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" /><a href="mailto:simpachrys@gmail.com" className="hover:text-foreground">simpachrys@gmail.com</a></li>
           </ul>
