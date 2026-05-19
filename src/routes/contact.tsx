@@ -54,25 +54,26 @@ function ContactPage() {
         </div>
 
         <form
-          action="mailto:simpachrys@gmail.com"
+          action="https://formsubmit.co/simpachrys@gmail.com"
           method="post"
-          encType="text/plain"
           className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow-card)] sm:p-10"
         >
           <h2 className="font-display text-3xl font-semibold">Send a message</h2>
           <p className="mt-2 text-sm text-muted-foreground">We typically respond within one business day.</p>
 
           <div className="mt-6 space-y-4">
-            <input type="hidden" name="Subject" value="New message — Irutare Medical Clinic" />
+            <input type="hidden" name="_subject" value="New message — Irutare Medical Clinic" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
             <div className="grid gap-4 sm:grid-cols-2">
-              <Field label="Full name" name="Full name" required />
-              <Field label="Phone" name="Phone" type="tel" required />
+              <Field label="Full name" name="name" required />
+              <Field label="Phone" name="phone" type="tel" required />
             </div>
-            <Field label="Email" name="Email" type="email" />
+            <Field label="Email" name="email" type="email" />
             <div>
               <label className="mb-1.5 block text-sm font-medium">Message</label>
               <textarea
-                name="Message"
+                name="message"
                 required
                 rows={5}
                 className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
