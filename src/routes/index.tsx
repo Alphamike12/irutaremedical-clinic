@@ -199,7 +199,7 @@ function HomePage() {
               </a>
               <div className="flex items-center gap-3 rounded-2xl bg-background/10 px-5 py-4 backdrop-blur-sm">
                 <MapPin className="h-5 w-5" />
-                <span><span className="block text-xs opacity-80">Visit</span><span className="font-medium">Irutare, Rwanda</span></span>
+                <span><span className="block text-xs opacity-80">Visit</span><span className="font-medium">Rutare Sector, Gicumbi District, Northern Province, Rwanda</span></span>
               </div>
             </div>
           </div>
