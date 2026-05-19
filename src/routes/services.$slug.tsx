@@ -1,46 +1,28 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
 import { getService, services } from "@/data/services";
 import { ArrowLeft, ArrowRight, Check, Users } from "lucide-react";
 
 export const Route = createFileRoute("/services/$slug")({
-  loader: ({ params }) => {
-    const service = getService(params.slug);
-    if (!service) throw notFound();
-    return { service };
-  },
-  head: ({ loaderData }) => {
-    const s = loaderData?.service;
-    const title = s ? `${s.title} — Irutare Medical Clinic` : "Service — Irutare Medical Clinic";
-    const description = s?.short ?? "Healthcare services at Irutare Medical Clinic.";
-    return {
-      meta: [
-        { title },
-        { name: "description", content: description },
-        { property: "og:title", content: title },
-        { property: "og:description", content: description },
-      ],
-    };
-  },
-  notFoundComponent: () => (
-    <SiteLayout>
-      <section className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6">
-        <h1 className="font-display text-4xl font-semibold">Service not found</h1>
-        <p className="mt-3 text-muted-foreground">The service you're looking for doesn't exist.</p>
-        <Link
-          to="/services"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back to services
-        </Link>
-      </section>
-    </SiteLayout>
-  ),
+  head: () => ({
+    meta: [
+      { title: "Service Details — Irutare Medical Clinic" },
+      { name: "description", content: "Detailed healthcare service information from Irutare Medical Clinic." },
+      { property: "og:title", content: "Service Details — Irutare Medical Clinic" },
+      { property: "og:description", content: "Detailed healthcare service information from Irutare Medical Clinic." },
+    ],
+  }),
   component: ServiceDetailPage,
 });
 
 function ServiceDetailPage() {
-  const { service } = Route.useLoaderData();
+  const { slug } = Route.useParams();
+  const service = getService(slug);
+
+  if (!service) {
+    return <ServiceNotFound />;
+  }
+
   const Icon = service.icon;
   const related = services.filter((s) => s.slug !== service.slug).slice(0, 3);
 
@@ -118,6 +100,23 @@ function ServiceDetailPage() {
             ))}
           </div>
         </div>
+      </section>
+    </SiteLayout>
+  );
+}
+
+function ServiceNotFound() {
+  return (
+    <SiteLayout>
+      <section className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6">
+        <h1 className="font-display text-4xl font-semibold">Service not found</h1>
+        <p className="mt-3 text-muted-foreground">The service you're looking for doesn't exist.</p>
+        <Link
+          to="/services"
+          className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+        >
+          <ArrowLeft className="h-4 w-4" /> Back to services
+        </Link>
       </section>
     </SiteLayout>
   );
