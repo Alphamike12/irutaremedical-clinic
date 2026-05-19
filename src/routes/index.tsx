@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
 import {
-  Stethoscope, Baby, HeartPulse, FlaskConical, Pill, UserRound,
   ShieldCheck, Clock, Sparkles, ArrowRight, MapPin, Phone,
 } from "lucide-react";
+import { services as clinicServices } from "@/data/services";
 import heroImg from "@/assets/clinic-hero.jpg";
 import doctorImg from "@/assets/doctor-care.jpg";
 import maternityImg from "@/assets/maternity.jpg";
@@ -20,14 +20,7 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const services = [
-  { icon: Stethoscope, title: "Outpatient (OPD)", desc: "General consultations and treatment of common illnesses." },
-  { icon: Baby, title: "Pediatrics", desc: "Child healthcare, nutrition monitoring and vaccinations." },
-  { icon: HeartPulse, title: "Gynecology & Maternity", desc: "Antenatal care, women's health and family planning." },
-  { icon: FlaskConical, title: "Laboratory", desc: "Blood tests, malaria, pregnancy tests and urinalysis." },
-  { icon: Pill, title: "Pharmacy", desc: "Prescription medicines and over-the-counter drugs." },
-  { icon: UserRound, title: "General Medicine", desc: "Comprehensive care for adults and the elderly." },
-];
+const phaseOneServices = clinicServices.filter((service) => service.phase === "one");
 
 function HomePage() {
   return (
