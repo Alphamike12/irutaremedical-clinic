@@ -24,9 +24,10 @@ function ContactPage() {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
     setError(null);
     setStatus("sending");
-    const fd = new FormData(e.currentTarget);
+    const fd = new FormData(form);
     try {
       await send({
         data: {
@@ -37,7 +38,7 @@ function ContactPage() {
         },
       });
       setStatus("sent");
-      e.currentTarget.reset();
+      form.reset();
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Something went wrong.");
