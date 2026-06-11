@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, Loader2 } from "lucide-react";
-import { sendContactMessage } from "@/lib/contact.functions";
+
+const WEB3FORMS_ACCESS_KEY = "6bae2526-6baa-46c7-8aa5-8fa8f6d002e5";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -18,7 +18,6 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const send = useServerFn(sendContactMessage);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -28,15 +27,31 @@ function ContactPage() {
     setError(null);
     setStatus("sending");
     const fd = new FormData(form);
+    const name = String(fd.get("name") || "").trim();
+    const phone = String(fd.get("phone") || "").trim();
+    const email = String(fd.get("email") || "").trim();
+    const message = String(fd.get("message") || "").trim();
+
     try {
-      await send({
-        data: {
-          name: String(fd.get("name") || "").trim(),
-          phone: String(fd.get("phone") || "").trim(),
-          email: String(fd.get("email") || "").trim(),
-          message: String(fd.get("message") || "").trim(),
-        },
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New message from ${name} — Irutare Medical Clinic`,
+          from_name: "Irutare Medical Clinic Website",
+          name,
+          phone,
+          email: email || "not provided",
+          message,
+          replyto: email || undefined,
+          botcheck: "",
+        }),
       });
+      const body = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string };
+      if (!res.ok || !body.success) {
+        throw new Error(body.message || "Failed to send message. Please try again.");
+      }
       setStatus("sent");
       form.reset();
     } catch (err) {
